@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knowledge-Sharing Catchup — Interactive Demo</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; margin: 0; background: #faf8f4; color: #222; }
+  header { background: #1f2a44; color: #fff; padding: 28px 24px; }
+  header h1 { margin: 0 0 6px; font-size: 26px; }
+  header p { margin: 0; opacity: .85; }
+  .banner { background: #fff3cd; border-bottom: 1px solid #e6c87a; padding: 10px 24px; font-size: 14px; }
+  nav { display: flex; gap: 4px; padding: 12px 24px 0; background: #fff; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
+  nav button { font: inherit; background: none; border: none; border-bottom: 3px solid transparent; padding: 10px 14px; cursor: pointer; color: #444; }
+  nav button.active { border-bottom-color: #1f2a44; color: #1f2a44; font-weight: bold; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px; }
+  section.tab { display: none; }
+  section.tab.active { display: block; }
+  h2 { font-size: 22px; margin-top: 0; }
+  h3 { font-size: 17px; margin-top: 28px; }
+  .card { background: #fff; border: 1px solid #e2ddd2; border-radius: 10px; padding: 20px 22px; margin: 16px 0; }
+  .pill { display: inline-block; background: #2e7d32; color: #fff; font-size: 11px; font-weight: bold; letter-spacing: .06em; border-radius: 20px; padding: 3px 10px; text-transform: uppercase; }
+  .pill.grey { background: #777; }
+  .tag { display: inline-block; background: #eef2f7; border-radius: 20px; padding: 2px 10px; font-size: 12px; color: #335; }
+  .meta { color: #666; font-size: 13px; }
+  a { color: #1f4e79; }
+  button.primary { background: #1f2a44; color: #fff; border: none; border-radius: 6px; padding: 9px 16px; font: inherit; cursor: pointer; margin: 4px 4px 4px 0; }
+  button.secondary { background: #fff; color: #1f2a44; border: 1px solid #1f2a44; border-radius: 6px; padding: 9px 16px; font: inherit; cursor: pointer; margin: 4px 4px 4px 0; }
+  textarea, input[type=text] { width: 100%; font: inherit; padding: 9px; border: 1px solid #ccc; border-radius: 6px; }
+  .q { margin: 18px 0; }
+  .q label { font-weight: bold; display: block; margin-bottom: 6px; }
+  .q .saved { background: #f0f4fa; border-left: 4px solid #1f2a44; padding: 10px 14px; margin-top: 6px; }
+  .meeting { cursor: pointer; }
+  .meeting:hover { border-color: #1f2a44; }
+  .meeting.selected { border-color: #1f2a44; box-shadow: 0 0 0 1px #1f2a44; }
+  .hidden { display: none; }
+  footer { max-width: 860px; margin: 0 auto; padding: 0 24px 32px; color: #777; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Knowledge-Sharing Catchup</h1>
+  <p>One conversation at a time, with the same good questions — notes filed, summaries written, nothing invented.</p>
+</header>
+<div class="banner"><strong>Interactive demo.</strong> Everything here is fictional sample data — a made-up designer, made-up notes — so you can click around and see how the system works. No real person's conversations are shown here.</div>
+<nav>
+  <button class="active" data-tab="overview">Overview</button>
+  <button data-tab="person">Designer</button>
+  <button data-tab="questions">Meeting &amp; Questions</button>
+  <button data-tab="transcript">Transcript</button>
+  <button data-tab="summaries">Summaries</button>
+</nav>
+<main>
+
+<section class="tab active" id="tab-overview">
+  <h2>Overview</h2>
+  <p class="meta">Your catchup series, at a glance. Upcoming meetings first, then completed.</p>
+
+  <div class="card meeting selected" onclick="selectMeeting(this, 'Alex Morgan', 'Wednesday 12 November 2026, 11:30–12:30')">
+    <p><strong>Alex Morgan</strong> &nbsp; <span class="pill grey">Upcoming</span></p>
+    <p class="meta">Wednesday 12 November 2026, 11:30–12:30 &middot; Google Meet</p>
+    <p>Product designer, fintech. First catchup — no answers yet.</p>
+  </div>
+
+  <div class="card meeting" onclick="selectMeeting(this, 'Priya Nair', 'Tuesday 4 November 2026, 11:00–11:45')">
+    <p><strong>Priya Nair</strong> &nbsp; <span class="pill">Completed</span></p>
+    <p class="meta">Tuesday 4 November 2026, 11:00–11:45 &middot; Google Meet</p>
+    <p>7 of 10 questions answered &middot; Summary written</p>
+  </div>
+
+  <div class="card meeting" onclick="selectMeeting(this, 'Sam Lee', 'Friday 31 October 2026, 10:00–10:45')">
+    <p><strong>Sam Lee</strong> &nbsp; <span class="pill">Completed</span></p>
+    <p class="meta">Friday 31 October 2026, 10:00–10:45 &middot; Google Meet</p>
+    <p>10 of 10 questions answered &middot; Summary written</p>
+  </div>
+
+  <p><button class="primary" type="button" onclick="alert('In the real system, this creates the calendar meeting — titled with your series name — and asks you first before adding it here.')">+ Add a meeting</button></p>
+</section>
+
+<section class="tab" id="tab-person">
+  <h2>Designer</h2>
+  <div class="card">
+    <h3 style="margin-top:0">Alex Morgan</h3>
+    <p class="meta">Product designer &middot; Fintech &middot; alex.morgan@example.com</p>
+    <p><span class="tag">First catchup</span> <span class="tag">UX / Product Design</span></p>
+    <h3>Script</h3>
+    <p>Hi Alex,</p>
+    <p>Thank you for making time for this conversation. I'm [Your Name], a product designer currently leading a CRM product end to end.</p>
+    <p>I'm keen to learn more about what designers in the field are working on, what interests them, and how the design process has evolved with AI. I look forward to hearing your perspective.</p>
+    <p>Best regards,<br>[Your Name]</p>
+    <p><strong>Before ending the call:</strong></p>
+    <p>Thank you very much for your time today. It was a pleasure speaking with you, and I truly appreciate your insights — particularly on how AI is shaping your design process. I've taken away a great deal to reflect on.</p>
+    <p>Thank you again for your input, and I hope we have the opportunity to speak again soon.</p>
+  </div>
+</section>
+
+<section class="tab" id="tab-questions">
+  <h2>Meeting &amp; Questions</h2>
+  <p class="meta">Priya Nair &middot; Tuesday 4 November 2026, 11:00–11:45 &middot; 7 of 10 answered</p>
+  <p>Try it: type an answer under any question and press <strong>Submit answers</strong> — the summary appears on the Summaries tab.</p>
+
+  <div class="q">
+    <label>1. A bit about you</label>
+    <div class="saved">Recently moved to Toronto. Worked in South Korea in a design agency.</div>
+  </div>
+  <div class="q">
+    <label>2. What you've been working on</label>
+    <div class="saved">A learning and job-seeking AI flow that reads all his emails each morning.</div>
+  </div>
+  <div class="q">
+    <label>3. How your design process looks now</label>
+    <div class="saved">Uses AI for research and exploration in ChatGPT and Figma Make.</div>
+  </div>
+  <div class="q">
+    <label>4. Tools you use day to day</label>
+    <div class="saved">ChatGPT, Claude, Figma Make, Lovable.</div>
+  </div>
+  <div class="q">
+    <label>5. Have you built anything with AI?</label>
+    <textarea rows="2" id="q5" placeholder="Type an answer here…"></textarea>
+  </div>
+  <div class="q">
+    <label>6. How you build design systems</label>
+    <textarea rows="2" placeholder="Type an answer here…"></textarea>
+  </div>
+  <div class="q">
+    <label>7. Working with engineers</label>
+    <textarea rows="2" placeholder="Type an answer here…"></textarea>
+  </div>
+  <div class="q">
+    <label>8. How you handle handoffs</label>
+    <textarea rows="2" placeholder="Type an answer here…"></textarea>
+  </div>
+  <div class="q">
+    <label>9. Knowing if it worked after shipping</label>
+    <div class="saved">Talking to the data science team, and A/B testing.</div>
+  </div>
+  <div class="q">
+    <label>10. How you stay updated</label>
+    <div class="saved">IBM guidelines &amp; Apple guidelines.</div>
+  </div>
+
+  <p>
+    <button class="primary" type="button" onclick="submitAnswers()">Submit answers</button>
+    <button class="secondary" type="button" onclick="alert('In the real system, this opens the Additional notes box for this meeting.')">✎ Additional notes</button>
+  </p>
+  <p id="submit-msg" class="hidden" style="color:#2e7d32; font-weight:bold;">Answers saved — and the meeting summary was generated automatically.</p>
+</section>
+
+<section class="tab" id="tab-transcript">
+  <h2>Answer from transcripts</h2>
+  <p>Paste a transcript, or upload a .txt / .md file. The questionnaire fills in only where the transcript clearly says so — the rest stays blank, and nothing is saved until you press Save.</p>
+  <div class="card">
+    <textarea rows="6" id="transcript-box" placeholder="Paste the transcript here…">Priya: I use ChatGPT and Claude every day, and Figma Make for quick prototypes. For research I explore in ChatGPT first, then test in Figma Make. After shipping, I talk to the data science team and run A/B tests to see if the design worked.</textarea>
+    <p>
+      <button class="primary" type="button" onclick="fillFromTranscript()">Fill questionnaire from transcript</button>
+      <button class="secondary" type="button" onclick="alert('In the real system, this opens a file picker for a .txt or .md transcript.')">Upload .txt / .md</button>
+    </p>
+    <div id="transcript-result" class="hidden">
+      <h3>Draft — check before saving</h3>
+      <p><strong>4. Tools you use day to day:</strong> ChatGPT, Claude, Figma Make.</p>
+      <p><strong>9. Knowing if it worked after shipping:</strong> Talking to the data science team, and A/B testing.</p>
+      <p><strong>3. How your design process looks now:</strong> Explores in ChatGPT first, then tests in Figma Make.</p>
+      <p class="meta">Questions the transcript didn't cover are left blank. Unmatched material goes in Additional notes.</p>
+      <p>
+        <button class="primary" type="button" onclick="saveTranscript()">Save</button>
+        <button class="secondary" type="button" onclick="document.getElementById('transcript-result').classList.add('hidden')">Cancel</button>
+      </p>
+      <p id="transcript-saved" class="hidden" style="color:#2e7d32; font-weight:bold;">Saved — answers filed, and the full transcript is kept with this meeting.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tab" id="tab-summaries">
+  <h2>Summaries</h2>
+  <div class="card">
+    <h3 style="margin-top:0">Priya Nair — 4 November 2026</h3>
+    <p>Priya recently moved to Toronto after working in a design agency in South Korea. She is building a learning and job-seeking AI flow that reads her emails each morning, and uses ChatGPT, Claude, Figma Make, and Lovable day to day. She explores with AI in ChatGPT, then tests in Figma Make. She validates after shipping by talking to the data science team and running A/B tests, and stays updated through the IBM and Apple guidelines.</p>
+    <p class="meta">Generated automatically when the answers were submitted.</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">All meetings — themes so far</h3>
+    <ul>
+      <li><strong>AI as a daily helper:</strong> everyone uses ChatGPT or Claude daily, mostly for research and exploration.</li>
+      <li><strong>Prototyping is shifting:</strong> Figma Make and Lovable come up in every conversation as the quick way to test an idea.</li>
+      <li><strong>Validation is human:</strong> A/B testing and talking to data teams — nobody trusts AI alone to say a design worked.</li>
+      <li><strong>Guidelines still matter:</strong> IBM and Apple guidelines are the shared reference point for staying updated.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<footer>
+  <p>Interactive demo for the Knowledge-Sharing Catchup skill. All people, meetings, and notes here are fictional. The real system is private to its owner; this demo shows only how it works.</p>
+</footer>
+<script>
+  document.querySelectorAll('nav button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('nav button').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('section.tab').forEach(function (s) { s.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+  function selectMeeting(el, name, when) {
+    document.querySelectorAll('.meeting').forEach(function (m) { m.classList.remove('selected'); });
+    el.classList.add('selected');
+  }
+  function submitAnswers() {
+    document.getElementById('submit-msg').classList.remove('hidden');
+  }
+  function fillFromTranscript() {
+    document.getElementById('transcript-result').classList.remove('hidden');
+    document.getElementById('transcript-saved').classList.add('hidden');
+  }
+  function saveTranscript() {
+    document.getElementById('transcript-saved').classList.remove('hidden');
+  }
+</script>
+</body>
+</html>
