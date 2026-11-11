@@ -1,0 +1,5 @@
+name: "knowledge-sharing-catchup"
+title: "Knowledge-Sharing Catchup"
+description: "Runs a private, field-neutral knowledge-sharing series: regular one-to-one catchups with people in your field, the same 10 questions each time, live notes filed per question, transcripts filled from Fathom, chat, or upload, per-meeting summaries, and one all-meetings summary at the end."
+category: "Work and knowledge"
+include_in_prompt: false
